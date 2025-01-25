@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: covivio.immo.ziskfv
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: https://ciiwsds401.iws.all-for-one.cloud:44301/
+          client: '200'
+        app:
+          name: ZIS_APP_KFV
+          description: Analytics Sales Contract
+          package: ZVTM_V2_KFV_IS
+          transport: DS4K920115
+        exclude:
+          - /test/
